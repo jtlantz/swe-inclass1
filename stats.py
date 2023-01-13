@@ -25,6 +25,10 @@ def compute(file):
     print(file)
     print_stats(df)
 
+"""
+combines all the files into one dataframe and prints the stats
+args: files: list of strings
+"""
 def compute_all(files):
     #read each line in file
     arr = []
@@ -36,12 +40,18 @@ def compute_all(files):
     print("Combined")
     print_stats(df)
 
+"""
+Prints all the stats in a dataframe, should be just full of floats
+args: arr: pd.DataFrame
+returns: nothing
+"""
 def print_stats(arr: pd.DataFrame):
     print(f"mean: {arr.mean().values[0]}")
     print(f"std: {arr.std().values[0]}")
     print(f"min: {arr.min().values[0]}")
     print(f"max: {arr.max().values[0]}")
 
+#entrypoint for program
 if __name__ == "__main__":
     #get all names of files
     files = sys.argv[1:]

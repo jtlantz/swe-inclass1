@@ -4,10 +4,8 @@ import pandas as pd
 
 def verify_input(fn):
     import re
-
-# Regular expression pattern to match numbers
+    # Regular expression pattern to match numbers
     pattern = r'^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$'
-
     with open(fn, 'r') as file:
         for line in file:
             # Use the search() function to check if the line matches the pattern
@@ -31,8 +29,10 @@ def compute(file):
 
 if __name__ == "__main__":
     #take the first name
-    fn = sys.argv[1]
-    if verify_input(fn):
-        compute(fn) 
-    else:
-        print("Invalid input file. Please check the input file.")
+    files = sys.argv[1:]
+    #by filtering this way, the whole program won't crash from one bad txt file
+    for fn in files:
+        if verify_input(fn):
+            compute(fn) 
+        else:
+            print(f"File {fn} contains invalid data.")

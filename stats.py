@@ -28,6 +28,7 @@ def compute(file):
 """
 combines all the files into one dataframe and prints the stats
 args: files: list of strings
+returns: nothing
 """
 def compute_all(files):
     #read each line in file

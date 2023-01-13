@@ -1,6 +1,21 @@
 import sys
 import pandas as pd
 
+
+def verify_input(fn):
+    import re
+
+# Regular expression pattern to match numbers
+    pattern = r'^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$'
+
+    with open(fn, 'r') as file:
+        for line in file:
+            # Use the search() function to check if the line matches the pattern
+            match = re.search(pattern, line)
+            if not match:
+                return False
+    return True
+
 #main function
 def compute(file):
     #read each line in file
@@ -17,4 +32,7 @@ def compute(file):
 if __name__ == "__main__":
     #take the first name
     fn = sys.argv[1]
-    compute(fn)
+    if verify_input(fn):
+        compute(fn) 
+    else:
+        print("Invalid input file. Please check the input file.")
